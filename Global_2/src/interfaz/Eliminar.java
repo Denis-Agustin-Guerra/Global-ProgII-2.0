@@ -69,7 +69,7 @@ public class Eliminar extends javax.swing.JFrame {
     private void lista_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nombreActionPerformed
         // TODO add your handling code here:
         for (int i = 0; i < Menu.cantores.size(); i++) {
-            lista_nombre.addItem(Menu.cantores.get(i));
+            lista_nombre.addItem(Menu.cantores.get(i).nombre);//<---------- OJO CON EL NOMBRE
         }
     }//GEN-LAST:event_lista_nombreActionPerformed
 

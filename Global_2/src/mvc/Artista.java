@@ -31,10 +31,11 @@ public class Artista extends SerCantor {
     }
 
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
     
-    
-    
-    
-    
+      
 }

@@ -15,4 +15,9 @@ public class Canario extends SerCantor{
     }
     
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
+    
 }

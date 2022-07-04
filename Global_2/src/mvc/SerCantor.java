@@ -44,5 +44,11 @@ public abstract class SerCantor implements PuedeCantar, Serializable{
         edad = años +" años.";
         return edad;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     
 }

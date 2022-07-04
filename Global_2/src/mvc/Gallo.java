@@ -16,7 +16,10 @@ public class Gallo extends SerCantor{
     
     
     
-    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
     
     
