@@ -4,6 +4,8 @@ import mvc.Artista;
 import mvc.Instrumento;
 import mvc.SerCantor;
 import interfaz.Ingresar;
+import static interfaz.Ingresar.toCalendar;
+import java.util.Calendar;
 public class Elegir extends javax.swing.JFrame {
     private Ingresar e;
     public Elegir() {
@@ -172,9 +174,24 @@ public class Elegir extends javax.swing.JFrame {
 
     private void lista_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nombreActionPerformed
         // TODO add your handling code here:
-
-//        int i = Menu.cantores.size()-1;
-//        lista_nombre.addItem(Menu.cantores.get(i));
+        for (int i = 0; i < Menu.cantores.size(); i++) {
+            lista_nombre.addItem(Menu.cantores.get(i));
+        }
+        Menu host = new Menu();
+        Artista ar = (Artista)lista_nombre.getSelectedItem();
+        out_tipo.setText(ar.tipo);
+        out_nombre_intrum.setText(ar.usa.get(0).nombre);
+        out_tipo_intrum.setText(ar.usa.get(0).tipo);
+        Calendar fechaCumCalen = toCalendar(ar.fecha_de_nacimiento);
+        String fecha=fechaCumCalen.get(Calendar.DAY_OF_MONTH)+"/"+(fechaCumCalen.get(Calendar.MONTH)+1)+"/"+fechaCumCalen.get(Calendar.YEAR);
+        out_fecha_nac.setText(fecha);
+        out_edad.setText(ar.calcularEdad());
+        out_momento.setText(ar.cuando.tipo);
+        if (ar.cuando.getAlegria()) {
+            out_alegre.setText("Si");
+        }else{
+            out_alegre.setText("No");
+        }
     }//GEN-LAST:event_lista_nombreActionPerformed
 
     public static void main(String args[]) {
@@ -183,13 +200,6 @@ public class Elegir extends javax.swing.JFrame {
                 new Elegir().setVisible(true);
             }
         });
-        
-    }
-    public void mostrar(SerCantor cantores){
-        Menu host = new Menu();
-        Artista ar = (Artista)lista_nombre.getSelectedItem();
-        out_tipo.setText(ar.tipo);
-
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;

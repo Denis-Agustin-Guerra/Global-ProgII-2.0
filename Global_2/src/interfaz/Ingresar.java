@@ -4,7 +4,6 @@ package interfaz;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import mvc.Artista;
 import mvc.Canario;
@@ -12,7 +11,8 @@ import mvc.Gallo;
 import mvc.Instrumento;
 import mvc.Momento;
 import mvc.SerCantor;
-import interfaz.Elegir;
+
+
 
 public class Ingresar extends javax.swing.JFrame {
     public int i;
@@ -27,6 +27,7 @@ public class Ingresar extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         in_nombre = new javax.swing.JTextField();
@@ -43,8 +44,6 @@ public class Ingresar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         in_tipo_instrum = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        rbtn_si = new javax.swing.JRadioButton();
-        rbtn_no = new javax.swing.JRadioButton();
         calendario = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -54,9 +53,12 @@ public class Ingresar extends javax.swing.JFrame {
         minutos = new javax.swing.JComboBox<>();
         btn_agregar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        rbtn_no = new javax.swing.JRadioButton();
+        rbtn_si = new javax.swing.JRadioButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -96,6 +98,11 @@ public class Ingresar extends javax.swing.JFrame {
         rbtn_canario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_canario.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_canario.setText("CANARIO");
+        rbtn_canario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_canarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(rbtn_canario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
         buttonGroup1.add(rbtn_gallo);
@@ -143,26 +150,6 @@ public class Ingresar extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("¿ES ALEGRE?");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, -1, -1));
-
-        rbtn_si.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbtn_si.setForeground(new java.awt.Color(255, 255, 255));
-        rbtn_si.setText("SI");
-        rbtn_si.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_siActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbtn_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
-
-        rbtn_no.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbtn_no.setForeground(new java.awt.Color(255, 255, 255));
-        rbtn_no.setText("NO");
-        rbtn_no.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtn_noActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbtn_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
         getContentPane().add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 119, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -207,6 +194,28 @@ public class Ingresar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, -1, -1));
+
+        buttonGroup3.add(rbtn_no);
+        rbtn_no.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_no.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_no.setText("NO");
+        rbtn_no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_noActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbtn_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+
+        buttonGroup3.add(rbtn_si);
+        rbtn_si.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_si.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_si.setText("SI");
+        rbtn_si.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn_siActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbtn_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu-75.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 640));
@@ -282,11 +291,11 @@ public class Ingresar extends javax.swing.JFrame {
             String nombreArtista = in_nombre.getText();
             boolean alegre = false;
             Date fechacum = calendario.getDate();
-            if (rbtn_si.isSelected()) {
-                alegre = true;
-            }else if(rbtn_no.isSelected()){
-                alegre = false;
-            }
+//            if (rbtn_si.isSelected()) {
+//                alegre = true;
+//            }else if(rbtn_no.isSelected()){
+//                alegre = false;
+//            }
             String h = (String) hora.getSelectedItem();
             Momento m = new Momento(alegre);
             m.setTipo(h);
@@ -296,19 +305,26 @@ public class Ingresar extends javax.swing.JFrame {
                 instrumento.nombre=in_nombre_instrum.getText();
                 instrumento.tipo=in_tipo_instrum.getText();
                 instrum.add(instrumento);
-                Artista a= new Artista(instrum, nombreArtista, m, tipo, fechacum);
-                Menu.cantores.add(a);
+                cantante = new Artista(instrum, nombreArtista, m, tipo, fechacum);
+                //Artista a = new Artista(instrum, nombreArtista, m, tipo, fechacum);
+                //Menu.cantores.add(a);
             }else if("GALLO".equals(tipo)){
-                Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);
-                Menu.cantores.add(g);
+                cantante = new Gallo(nombreArtista, m, tipo, fechacum);
+                //Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);     OTRA OPCION PARA GUARDARLOS EN CANTORES
+                //Menu.cantores.add(g);
             }else if("CANARIO".equals(tipo)){
-                Canario c = new Canario(nombreArtista, m, tipo, fechacum);
-                Menu.cantores.add(c);
+                cantante= new Canario(nombreArtista, m, tipo, fechacum);
+                //Canario c = new Canario(nombreArtista, m, tipo, fechacum);
+                //Menu.cantores.add(c);
             }
-            i = Menu.cantores.size()-1;
-            e.lista_nombre.addItem(Menu.cantores.get(i));   //SOLUCIONAR ESTO PARA LA CARGA DE NOMBRES EN ELEGIR
-
+            Menu.cantores.add(cantante);
+//            i = Menu.cantores.size()-1;
+//            e.lista_nombre.addItem(Menu.cantores.get(i));   //SOLUCIONAR ESTO PARA LA CARGA DE NOMBRES EN ELEGIR
     }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void rbtn_canarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_canarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtn_canarioActionPerformed
 
     private void rbtn_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_siActionPerformed
         // TODO add your handling code here:
@@ -357,6 +373,7 @@ public class Ingresar extends javax.swing.JFrame {
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_salir;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup3;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JLabel fondo;
     private javax.swing.JComboBox<String> hora;
@@ -377,11 +394,11 @@ public class Ingresar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> minutos;
-    private javax.swing.JRadioButton rbtn_artista;
-    private javax.swing.JRadioButton rbtn_canario;
-    private javax.swing.JRadioButton rbtn_gallo;
-    private javax.swing.JRadioButton rbtn_no;
-    private javax.swing.JRadioButton rbtn_si;
+    public javax.swing.JRadioButton rbtn_artista;
+    public javax.swing.JRadioButton rbtn_canario;
+    public javax.swing.JRadioButton rbtn_gallo;
+    public javax.swing.JRadioButton rbtn_no;
+    public javax.swing.JRadioButton rbtn_si;
     private javax.swing.JComboBox<String> si_no;
     // End of variables declaration//GEN-END:variables
 }

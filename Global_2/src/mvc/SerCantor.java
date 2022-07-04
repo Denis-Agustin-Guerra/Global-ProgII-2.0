@@ -41,7 +41,6 @@ public abstract class SerCantor implements PuedeCantar, Serializable{
         if(fechaCumCalen.get(Calendar.MONTH)+1<hoy.get(Calendar.MONTH) || (fechaCumCalen.get(Calendar.MONTH)+1== hoy.get(Calendar.MONTH) && fechaCumCalen.get(Calendar.DAY_OF_MONTH)< hoy.get(Calendar.DAY_OF_MONTH))){
              años = años - 1;
         }
-        
         edad = años +" años.";
         return edad;
     }
