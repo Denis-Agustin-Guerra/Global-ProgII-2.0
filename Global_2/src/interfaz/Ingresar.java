@@ -47,7 +47,7 @@ public class Ingresar extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         minutos = new javax.swing.JComboBox<>();
         btn_agregar = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
+        btn_volver = new javax.swing.JButton();
         rbtn_gallo = new javax.swing.JRadioButton();
         rbtn_canario = new javax.swing.JRadioButton();
         rbtn_artista = new javax.swing.JRadioButton();
@@ -55,7 +55,7 @@ public class Ingresar extends javax.swing.JFrame {
         rbtn_si = new javax.swing.JRadioButton();
         fondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -152,13 +152,13 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, -1, -1));
 
-        btn_salir.setText("SALIR");
-        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+        btn_volver.setText("VOLVER");
+        btn_volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salirActionPerformed(evt);
+                btn_volverActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, -1, -1));
+        getContentPane().add(btn_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, -1, -1));
 
         rbtn_gallo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_gallo.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,12 +246,13 @@ public class Ingresar extends javax.swing.JFrame {
         cal.setTime(date);
         return cal;
     }
-    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+    private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Se a cerrado correctamente");
-        System.exit(0);
         
-    }//GEN-LAST:event_btn_salirActionPerformed
+        dispose();
+        
+        
+    }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
@@ -351,7 +352,7 @@ public class Ingresar extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
-    private javax.swing.JButton btn_salir;
+    private javax.swing.JButton btn_volver;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup3;
     private com.toedter.calendar.JDateChooser calendario;
