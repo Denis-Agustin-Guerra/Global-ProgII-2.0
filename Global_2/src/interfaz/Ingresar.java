@@ -1,7 +1,9 @@
 package interfaz;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,12 +16,21 @@ import mvc.Momento;
 import mvc.SerCantor;
 
 public class Ingresar extends javax.swing.JFrame {
+    public Elegir e;
+    public String h;
 
+    public String getH() {
+        return h;
+    }
+
+    public void setH(String h) {
+        this.h = h;
+    }
+    
     public Ingresar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -160,6 +171,7 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(btn_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, -1, -1));
 
+        buttonGroup1.add(rbtn_gallo);
         rbtn_gallo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_gallo.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_gallo.setText("GALLO");
@@ -170,11 +182,13 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(rbtn_gallo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
+        buttonGroup1.add(rbtn_canario);
         rbtn_canario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_canario.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_canario.setText("CANARIO");
         getContentPane().add(rbtn_canario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
+        buttonGroup1.add(rbtn_artista);
         rbtn_artista.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_artista.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_artista.setText("ARTISTA");
@@ -185,6 +199,7 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(rbtn_artista, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
+        buttonGroup3.add(rbtn_no);
         rbtn_no.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_no.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_no.setText("NO");
@@ -195,6 +210,7 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(rbtn_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, 20));
 
+        buttonGroup3.add(rbtn_si);
         rbtn_si.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbtn_si.setForeground(new java.awt.Color(255, 255, 255));
         rbtn_si.setText("SI");
@@ -217,22 +233,6 @@ public class Ingresar extends javax.swing.JFrame {
 
     private void si_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_si_noActionPerformed
         //Inhabilitar los campos si no corresponde
-        String nombre = in_nombre.getText();
-        String tipo = "";
-        if (rbtn_artista.isSelected()) {
-            tipo = "ARTISTA";
-        } else if (rbtn_gallo.isSelected()) {
-            tipo = "GALLO";
-        } else if (rbtn_canario.isSelected()) {
-            tipo = "CANARIO";
-        }
-        if (tipo.equals("ARTISTA")) {
-            in_nombre_instrum.setEnabled(false);
-            in_tipo_instrum.setEnabled(false);
-        } else {
-            in_nombre_instrum.setEnabled(true);
-            in_tipo_instrum.setEnabled(true);
-        }
         if (si_no.getSelectedItem().equals("NO")) {
             in_nombre_instrum.setEnabled(false);
             in_tipo_instrum.setEnabled(false);
@@ -248,10 +248,7 @@ public class Ingresar extends javax.swing.JFrame {
     }
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         // TODO add your handling code here:
-        
         dispose();
-        
-        
     }//GEN-LAST:event_btn_volverActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
@@ -277,9 +274,8 @@ public class Ingresar extends javax.swing.JFrame {
             } else if (rbtn_no.isSelected()) {
                 alegre = false;
             }
-//            String h = (String) hora.getSelectedItem(); <------------------- FIJATE QUE HACER PARA MOSTRAR EL MOMENTO INTENTA CON DESCOMENTAR ESTO O DIRECTAMENTE USAMOS LO DE LA PAZ
+            //h =(String) hora.getSelectedItem(); //<------------------- FIJATE QUE HACER PARA MOSTRAR EL MOMENTO INTENTA CON DESCOMENTAR ESTO O DIRECTAMENTE USAMOS LO DE LA PAZ
             Momento m = new Momento(alegre);
-//            m.setTipo(h);
             if ("ARTISTA".equals(tipo)) {
                 ArrayList<Instrumento> instrum = new ArrayList();
                 var instrumento = new Instrumento();
@@ -287,18 +283,29 @@ public class Ingresar extends javax.swing.JFrame {
                 instrumento.tipo = in_tipo_instrum.getText();
                 instrum.add(instrumento);
                 cantante = new Artista(instrum, nombreArtista, m, tipo, fechacum);
-                //Artista a = new Artista(instrum, nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
+                //Artista a = new Artista(instrum, nombreArtista, m, tipo, fechacum);//<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(a);
             } else if ("GALLO".equals(tipo)) {
-                cantante = new Gallo(nombreArtista, m, tipo, fechacum);
-                //Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
+                //Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);//<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(g);
             } else if ("CANARIO".equals(tipo)) {
                 cantante = new Canario(nombreArtista, m, tipo, fechacum);
-                //Canario c = new Canario(nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
+                //Canario c = new Canario(nombreArtista, m, tipo, fechacum);//<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(c);
             }
             Menu.cantores.add(cantante);
+            in_nombre.setText("");
+            in_nombre_instrum.setText("");
+            in_tipo_instrum.setText("");
+            calendario.setDate(null);
+            try {
+                //persistir el array, con el nuevo cantor agregado
+                ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("src/persistencia/cantoresGuardados.txt"));
+                escribirFichero.writeObject(Menu.cantores);
+                escribirFichero.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }//GEN-LAST:event_btn_agregarActionPerformed
 
@@ -308,6 +315,22 @@ public class Ingresar extends javax.swing.JFrame {
 
     private void rbtn_artistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_artistaActionPerformed
         // TODO add your handling code here:
+        String nombre = in_nombre.getText();
+        String tipo = "";
+        if (rbtn_artista.isSelected()) {
+            tipo = "ARTISTA";
+        } else if (rbtn_gallo.isSelected()) {
+            tipo = "GALLO";
+        } else if (rbtn_canario.isSelected()) {
+            tipo = "CANARIO";
+        }
+        if (tipo.equals("ARTISTA")) {
+            in_nombre_instrum.setEnabled(false);
+            in_tipo_instrum.setEnabled(false);
+        } else {
+            in_nombre_instrum.setEnabled(true);
+            in_tipo_instrum.setEnabled(true);
+        }
     }//GEN-LAST:event_rbtn_artistaActionPerformed
 
     private void rbtn_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_noActionPerformed
@@ -319,36 +342,29 @@ public class Ingresar extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtn_siActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ingresar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ingresar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ingresar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ingresar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new Ingresar().setVisible(true);
             }
         });
+        
+    }
+    public ArrayList <SerCantor> persistir(){
+        ArrayList<SerCantor> prueba = new <SerCantor> ArrayList();
+        try{
+            //Se crea un objeto para recuperar el array de cantores del txt
+            ObjectInputStream recuperarFichero = new ObjectInputStream(new FileInputStream("src/persistencia/cantoresGuardados.txt"));
+            //cantores = (ArrayList<SerCantor>) recuperarFichero.readObject();
+            prueba = (ArrayList<SerCantor>) recuperarFichero.readObject();
+            //Se toma el tamaño del array 
+            int i = prueba.size() - 1;
+            return prueba;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return prueba;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
@@ -357,7 +373,7 @@ public class Ingresar extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JLabel fondo;
-    private javax.swing.JComboBox<String> hora;
+    public javax.swing.JComboBox<String> hora;
     private javax.swing.JTextField in_nombre;
     private javax.swing.JTextField in_nombre_instrum;
     private javax.swing.JTextField in_tipo_instrum;

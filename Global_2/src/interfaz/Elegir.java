@@ -7,7 +7,6 @@ import interfaz.Ingresar;
 import static interfaz.Ingresar.toCalendar;
 import java.util.Calendar;
 public class Elegir extends javax.swing.JFrame {
-    private Ingresar e;
     public Elegir() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -17,9 +16,8 @@ public class Elegir extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        lista_nombre = new javax.swing.JComboBox<>();
+        lista_nombre = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        out_tipo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -27,15 +25,17 @@ public class Elegir extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        tbn_cantar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        out_tipo = new javax.swing.JTextField();
         out_nombre_intrum = new javax.swing.JTextField();
         out_tipo_intrum = new javax.swing.JTextField();
         out_fecha_nac = new javax.swing.JTextField();
         out_edad = new javax.swing.JTextField();
         out_alegre = new javax.swing.JTextField();
         out_momento = new javax.swing.JTextField();
-        tbn_cantar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        Cargar_info = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,7 +59,6 @@ public class Elegir extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("NOMBRE:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
-        getContentPane().add(out_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 151, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,43 +94,13 @@ public class Elegir extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("MOMENTO:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 91, -1));
-        getContentPane().add(out_nombre_intrum, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 149, -1));
-        getContentPane().add(out_tipo_intrum, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 250, 160, -1));
-
-        out_fecha_nac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                out_fecha_nacActionPerformed(evt);
-            }
-        });
-        getContentPane().add(out_fecha_nac, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 86, -1));
-
-        out_edad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                out_edadActionPerformed(evt);
-            }
-        });
-        getContentPane().add(out_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 86, -1));
-
-        out_alegre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                out_alegreActionPerformed(evt);
-            }
-        });
-        getContentPane().add(out_alegre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 70, -1));
-
-        out_momento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                out_momentoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(out_momento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 93, -1));
 
         tbn_cantar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tbn_cantar.setText("CANTAR");
         getContentPane().add(tbn_cantar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("SALIR");
+        jButton1.setText("VOLVER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -144,40 +113,84 @@ public class Elegir extends javax.swing.JFrame {
         jLabel6.setText("TIPO:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
+        out_tipo.setEditable(false);
+        out_tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_tipoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 150, -1));
+
+        out_nombre_intrum.setEditable(false);
+        out_nombre_intrum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_nombre_intrumActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_nombre_intrum, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 150, -1));
+
+        out_tipo_intrum.setEditable(false);
+        out_tipo_intrum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_tipo_intrumActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_tipo_intrum, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 150, -1));
+
+        out_fecha_nac.setEditable(false);
+        out_fecha_nac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_fecha_nacActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_fecha_nac, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 90, -1));
+
+        out_edad.setEditable(false);
+        out_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_edadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+
+        out_alegre.setEditable(false);
+        out_alegre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_alegreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_alegre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
+
+        out_momento.setEditable(false);
+        out_momento.setToolTipText("");
+        out_momento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                out_momentoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out_momento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 80, -1));
+
+        Cargar_info.setText("Buscar");
+        Cargar_info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cargar_infoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cargar_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 610, 610));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 660, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void out_fecha_nacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_fecha_nacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_out_fecha_nacActionPerformed
-
-    private void out_alegreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_alegreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_out_alegreActionPerformed
-
-    private void out_momentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_momentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_out_momentoActionPerformed
-
-    private void out_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_edadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_out_edadActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lista_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nombreActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < Menu.cantores.size(); i++) {
-            lista_nombre.addItem(Menu.cantores.get(i).nombre);//<--------------OJO CON EL .NOMBRE
-        }
-        Menu host = new Menu();
         Artista ar = (Artista)lista_nombre.getSelectedItem();
         out_tipo.setText(ar.tipo);
         out_nombre_intrum.setText(ar.usa.get(0).nombre);
@@ -194,6 +207,41 @@ public class Elegir extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lista_nombreActionPerformed
 
+    private void out_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_tipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_tipoActionPerformed
+
+    private void out_nombre_intrumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_nombre_intrumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_nombre_intrumActionPerformed
+
+    private void out_tipo_intrumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_tipo_intrumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_tipo_intrumActionPerformed
+
+    private void out_fecha_nacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_fecha_nacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_fecha_nacActionPerformed
+
+    private void out_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_edadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_edadActionPerformed
+
+    private void out_alegreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_alegreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_alegreActionPerformed
+
+    private void out_momentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_out_momentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_out_momentoActionPerformed
+
+    private void Cargar_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_infoActionPerformed
+        
+        for (int i = 0; i < Menu.cantores.size(); i++) {
+            lista_nombre.addItem(Menu.cantores.get(i));
+        }
+    }//GEN-LAST:event_Cargar_infoActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -202,6 +250,7 @@ public class Elegir extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cargar_info;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -214,7 +263,7 @@ public class Elegir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    public javax.swing.JComboBox<String> lista_nombre;
+    public javax.swing.JComboBox lista_nombre;
     private javax.swing.JTextField out_alegre;
     private javax.swing.JTextField out_edad;
     private javax.swing.JTextField out_fecha_nac;

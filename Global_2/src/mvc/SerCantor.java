@@ -11,20 +11,23 @@ public abstract class SerCantor implements PuedeCantar, Serializable{
     public String tipo;
     public final Date fecha_de_nacimiento;
     public final Momento cuando;
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
     @Override
     public abstract void cantar();
     public void hacerCantar(SerCantor cantante){
         
     }
-
     public SerCantor(String nombre, Momento cuando, String tipo, Date fecha_de_nacimiento) {
         this.nombre = nombre;
         this.cuando = cuando;
         this.tipo = tipo;
         this.fecha_de_nacimiento = fecha_de_nacimiento;
     }
-    
     public String calcularEdad(){
         String edad;
         int años;
@@ -44,11 +47,4 @@ public abstract class SerCantor implements PuedeCantar, Serializable{
         edad = años +" años.";
         return edad;
     }
-
-    @Override
-    public String toString() {
-        return nombre;
-    }
-    
-    
 }

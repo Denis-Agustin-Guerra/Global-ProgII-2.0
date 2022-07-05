@@ -1,4 +1,6 @@
 package interfaz;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import mvc.Artista;
 import mvc.Momento;
 
@@ -16,7 +18,7 @@ public class Modificar extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        lista_nombre = new javax.swing.JComboBox<>();
+        lista_nombre = new javax.swing.JComboBox();
         out_in_nom_instrum = new javax.swing.JTextField();
         out_in_tipo_instrum = new javax.swing.JTextField();
         out_in_si_no = new javax.swing.JComboBox<>();
@@ -36,6 +38,7 @@ public class Modificar extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         rbtn_si = new javax.swing.JRadioButton();
         rbtn_no = new javax.swing.JRadioButton();
+        Cargar_info = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,7 +123,7 @@ public class Modificar extends javax.swing.JFrame {
         });
         getContentPane().add(btn_modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, -1, -1));
 
-        btn_salir.setText("SALIR");
+        btn_salir.setText("VOLVER");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_salirActionPerformed(evt);
@@ -183,6 +186,14 @@ public class Modificar extends javax.swing.JFrame {
         });
         getContentPane().add(rbtn_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, 20));
 
+        Cargar_info.setText("Buscar");
+        Cargar_info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cargar_infoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cargar_info, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu-75.png"))); // NOI18N
         fondo.setText("jLabel2");
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 480, 560));
@@ -196,8 +207,7 @@ public class Modificar extends javax.swing.JFrame {
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
-        
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void rbtn_artistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_artistaActionPerformed
@@ -236,9 +246,7 @@ public class Modificar extends javax.swing.JFrame {
 
     private void lista_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_nombreActionPerformed
         // TODO add your handling code here:
-        for (int i = 0; i < Menu.cantores.size(); i++) {
-            lista_nombre.addItem(Menu.cantores.get(i).nombre);//<---------- OJO CON EL NOMBRE
-        }
+
     }//GEN-LAST:event_lista_nombreActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
@@ -265,6 +273,16 @@ public class Modificar extends javax.swing.JFrame {
         }else{
             Menu.cantores.get(lista_nombre.getSelectedIndex()).cuando.setAlegria(false);
         }
+        out_in_nom_instrum.setText("");
+        out_in_tipo_instrum.setText("");
+        try {
+            //Persistir el nuevo array
+            ObjectOutputStream escribirFichero = new ObjectOutputStream(new FileOutputStream("src/persistencia/cantoresGuardados.txt"));
+            escribirFichero.writeObject(Menu.cantores);
+            escribirFichero.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void rbtn_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_siActionPerformed
@@ -275,6 +293,13 @@ public class Modificar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtn_noActionPerformed
 
+    private void Cargar_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cargar_infoActionPerformed
+
+        for (int i = 0; i < Menu.cantores.size(); i++) {
+            lista_nombre.addItem(Menu.cantores.get(i));
+        }
+    }//GEN-LAST:event_Cargar_infoActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -284,6 +309,7 @@ public class Modificar extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cargar_info;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_salir;
     private javax.swing.JLabel fondo;
@@ -299,7 +325,7 @@ public class Modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox<String> lista_nombre;
+    public javax.swing.JComboBox lista_nombre;
     private javax.swing.JComboBox<String> minutos;
     private javax.swing.JTextField out_in_nom_instrum;
     private javax.swing.JComboBox<String> out_in_si_no;

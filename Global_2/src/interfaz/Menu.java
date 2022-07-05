@@ -17,7 +17,6 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,7 +92,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
             Object [] opciones ={"Aceptar","Cancelar"};
             int eleccion = JOptionPane.showOptionDialog(rootPane,"En realidad desea realizar cerrar la aplicacion","Mensaje de Confirmacion",
             JOptionPane.YES_NO_OPTION,
@@ -144,7 +142,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_elegir;
     private javax.swing.JButton btn_ingresar;
