@@ -1,6 +1,7 @@
-
 package interfaz;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,11 +13,8 @@ import mvc.Instrumento;
 import mvc.Momento;
 import mvc.SerCantor;
 
-
-
 public class Ingresar extends javax.swing.JFrame {
-    public int i;
-    private Elegir e;
+
     public Ingresar() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,11 +48,11 @@ public class Ingresar extends javax.swing.JFrame {
         minutos = new javax.swing.JComboBox<>();
         btn_agregar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        botonArtista = new javax.swing.JRadioButton();
-        botonCanario = new javax.swing.JRadioButton();
-        botonGallo = new javax.swing.JRadioButton();
-        noEsAlegre = new javax.swing.JRadioButton();
-        esAlegre = new javax.swing.JRadioButton();
+        rbtn_gallo = new javax.swing.JRadioButton();
+        rbtn_canario = new javax.swing.JRadioButton();
+        rbtn_artista = new javax.swing.JRadioButton();
+        rbtn_no = new javax.swing.JRadioButton();
+        rbtn_si = new javax.swing.JRadioButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,45 +160,50 @@ public class Ingresar extends javax.swing.JFrame {
         });
         getContentPane().add(btn_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, -1, -1));
 
-        buttonGroup1.add(botonArtista);
-        botonArtista.setText("Artista");
-        botonArtista.addActionListener(new java.awt.event.ActionListener() {
+        rbtn_gallo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_gallo.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_gallo.setText("GALLO");
+        rbtn_gallo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonArtistaActionPerformed(evt);
+                rbtn_galloActionPerformed(evt);
             }
         });
-        getContentPane().add(botonArtista, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
+        getContentPane().add(rbtn_gallo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
-        buttonGroup1.add(botonCanario);
-        botonCanario.setText("Canario");
-        botonCanario.addActionListener(new java.awt.event.ActionListener() {
+        rbtn_canario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_canario.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_canario.setText("CANARIO");
+        getContentPane().add(rbtn_canario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+
+        rbtn_artista.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_artista.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_artista.setText("ARTISTA");
+        rbtn_artista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCanarioActionPerformed(evt);
+                rbtn_artistaActionPerformed(evt);
             }
         });
-        getContentPane().add(botonCanario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        getContentPane().add(rbtn_artista, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
-        buttonGroup1.add(botonGallo);
-        botonGallo.setText("Gallo");
-        botonGallo.addActionListener(new java.awt.event.ActionListener() {
+        rbtn_no.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_no.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_no.setText("NO");
+        rbtn_no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGalloActionPerformed(evt);
+                rbtn_noActionPerformed(evt);
             }
         });
-        getContentPane().add(botonGallo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+        getContentPane().add(rbtn_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, 20));
 
-        buttonGroup3.add(noEsAlegre);
-        noEsAlegre.setText("No");
-        getContentPane().add(noEsAlegre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, -1, -1));
-
-        buttonGroup3.add(esAlegre);
-        esAlegre.setText("Si");
-        esAlegre.addActionListener(new java.awt.event.ActionListener() {
+        rbtn_si.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbtn_si.setForeground(new java.awt.Color(255, 255, 255));
+        rbtn_si.setText("SI");
+        rbtn_si.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esAlegreActionPerformed(evt);
+                rbtn_siActionPerformed(evt);
             }
         });
-        getContentPane().add(esAlegre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
+        getContentPane().add(rbtn_si, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu-75.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 640));
@@ -215,18 +218,18 @@ public class Ingresar extends javax.swing.JFrame {
     private void si_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_si_noActionPerformed
         //Inhabilitar los campos si no corresponde
         String nombre = in_nombre.getText();
-        String tipo="";
+        String tipo = "";
         if (rbtn_artista.isSelected()) {
-            tipo="ARTISTA";
-        }else if(rbtn_gallo.isSelected()){
-            tipo="GALLO";
-        }else if(rbtn_canario.isSelected()){
-            tipo="CANARIO";
+            tipo = "ARTISTA";
+        } else if (rbtn_gallo.isSelected()) {
+            tipo = "GALLO";
+        } else if (rbtn_canario.isSelected()) {
+            tipo = "CANARIO";
         }
         if (tipo.equals("ARTISTA")) {
             in_nombre_instrum.setEnabled(false);
             in_tipo_instrum.setEnabled(false);
-        } else{
+        } else {
             in_nombre_instrum.setEnabled(true);
             in_tipo_instrum.setEnabled(true);
         }
@@ -237,87 +240,83 @@ public class Ingresar extends javax.swing.JFrame {
             in_nombre_instrum.setEnabled(true);
             in_tipo_instrum.setEnabled(true);
         }
-        
     }//GEN-LAST:event_si_noActionPerformed
-    public static Calendar toCalendar(Date date){ 
+    public static Calendar toCalendar(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal;
-    } 
+    }
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
-        
+        JOptionPane.showMessageDialog(null, "Se a cerrado correctamente");
         System.exit(0);
+        
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         // TODO add your handling code here:
         SerCantor cantante = null;
-        String tipo="";
+        String tipo = "";
         if (rbtn_artista.isSelected()) {
-            tipo="ARTISTA";
-        }else if(rbtn_gallo.isSelected()){
-            tipo="GALLO";
-        }else if(rbtn_canario.isSelected()){
-            tipo="CANARIO";
+            tipo = "ARTISTA";
+        } else if (rbtn_gallo.isSelected()) {
+            tipo = "GALLO";
+        } else if (rbtn_canario.isSelected()) {
+            tipo = "CANARIO";
         }
-        if (in_nombre.getText().equals("")||"".equals(tipo)) {
+        if (in_nombre.getText().equals("") || "".equals(tipo)) {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese el valor faltante.");
             in_nombre.requestFocusInWindow();
-        }else{
+        } else {
             String nombreArtista = in_nombre.getText();
             boolean alegre = false;
             Date fechacum = calendario.getDate();
-//            if (rbtn_si.isSelected()) {
-//                alegre = true;
-//            }else if(rbtn_no.isSelected()){
-//                alegre = false;
-//            }
-            String h = (String) hora.getSelectedItem();
+            if (rbtn_si.isSelected()) {
+                alegre = true;
+            } else if (rbtn_no.isSelected()) {
+                alegre = false;
+            }
+//            String h = (String) hora.getSelectedItem(); <------------------- FIJATE QUE HACER PARA MOSTRAR EL MOMENTO INTENTA CON DESCOMENTAR ESTO O DIRECTAMENTE USAMOS LO DE LA PAZ
             Momento m = new Momento(alegre);
-            m.setTipo(h);
+//            m.setTipo(h);
             if ("ARTISTA".equals(tipo)) {
-                ArrayList<Instrumento> instrum= new ArrayList();
+                ArrayList<Instrumento> instrum = new ArrayList();
                 var instrumento = new Instrumento();
-                instrumento.nombre=in_nombre_instrum.getText();
-                instrumento.tipo=in_tipo_instrum.getText();
+                instrumento.nombre = in_nombre_instrum.getText();
+                instrumento.tipo = in_tipo_instrum.getText();
                 instrum.add(instrumento);
                 cantante = new Artista(instrum, nombreArtista, m, tipo, fechacum);
-                //Artista a = new Artista(instrum, nombreArtista, m, tipo, fechacum);
+                //Artista a = new Artista(instrum, nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(a);
-            }else if("GALLO".equals(tipo)){
+            } else if ("GALLO".equals(tipo)) {
                 cantante = new Gallo(nombreArtista, m, tipo, fechacum);
-                //Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);     OTRA OPCION PARA GUARDARLOS EN CANTORES
+                //Gallo g = new Gallo(nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(g);
-            }else if("CANARIO".equals(tipo)){
-                cantante= new Canario(nombreArtista, m, tipo, fechacum);
-                //Canario c = new Canario(nombreArtista, m, tipo, fechacum);
+            } else if ("CANARIO".equals(tipo)) {
+                cantante = new Canario(nombreArtista, m, tipo, fechacum);
+                //Canario c = new Canario(nombreArtista, m, tipo, fechacum);<-------------------OTRA OPCION PARA GUARDARLOS EN CANTORES POR LAS DUDAS QUE NO SE GUARDE 
                 //Menu.cantores.add(c);
             }
             Menu.cantores.add(cantante);
-//            i = Menu.cantores.size()-1;
-//            e.lista_nombre.addItem(Menu.cantores.get(i));   //SOLUCIONAR ESTO PARA LA CARGA DE NOMBRES EN ELEGIR
+        }
     }//GEN-LAST:event_btn_agregarActionPerformed
 
-    private void botonArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArtistaActionPerformed
+    private void rbtn_galloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_galloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonArtistaActionPerformed
+    }//GEN-LAST:event_rbtn_galloActionPerformed
 
-    private void botonCanarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCanarioActionPerformed
+    private void rbtn_artistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_artistaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonCanarioActionPerformed
+    }//GEN-LAST:event_rbtn_artistaActionPerformed
 
-    private void botonGalloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGalloActionPerformed
+    private void rbtn_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_noActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonGalloActionPerformed
+    }//GEN-LAST:event_rbtn_noActionPerformed
 
-    private void esAlegreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esAlegreActionPerformed
+    private void rbtn_siActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn_siActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_esAlegreActionPerformed
+    }//GEN-LAST:event_rbtn_siActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -344,22 +343,18 @@ public class Ingresar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Ingresar().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JRadioButton botonArtista;
-    public javax.swing.JRadioButton botonCanario;
-    public javax.swing.JRadioButton botonGallo;
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_salir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup3;
     private com.toedter.calendar.JDateChooser calendario;
-    public javax.swing.JRadioButton esAlegre;
     private javax.swing.JLabel fondo;
     private javax.swing.JComboBox<String> hora;
     private javax.swing.JTextField in_nombre;
@@ -379,7 +374,11 @@ public class Ingresar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> minutos;
-    public javax.swing.JRadioButton noEsAlegre;
+    public javax.swing.JRadioButton rbtn_artista;
+    public javax.swing.JRadioButton rbtn_canario;
+    public javax.swing.JRadioButton rbtn_gallo;
+    public javax.swing.JRadioButton rbtn_no;
+    public javax.swing.JRadioButton rbtn_si;
     private javax.swing.JComboBox<String> si_no;
     // End of variables declaration//GEN-END:variables
 }

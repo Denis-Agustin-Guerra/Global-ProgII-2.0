@@ -9,29 +9,29 @@ public class Momento implements Serializable{
     private boolean alegria; 
 
     public String horario(){
-        String momento="";
-        int hora = Integer.parseInt(tipo);
-        if(hora<12){
-            momento="Mañana";
-        }else if(hora>12 && hora<20){             //MOMENTO DEL DIA QUE CANTA
-            momento= "Tarde";
-        }else{
-            momento="Noche";
-        }    
-        return momento;
-//         String horaD;
-//         //Guardar el dia y la hora actual
-//         Calendar diaYHora = Calendar.getInstance();
-//         String hora = Integer.toString(diaYHora.get(Calendar.HOUR_OF_DAY)) + ":"+Integer.toString(diaYHora.get(Calendar.MINUTE));
-//         
-//         //Segun la hora del dia que sea, decir si es de mañana o de tarde
-//         if(diaYHora.get(Calendar.HOUR_OF_DAY)<12){
-//             horaD = "Mañana";
-//         }else{
-//             horaD = "Tarde";
-//         }
-//         
-//        return horaD;
+//        String momento="";
+//        int hora = Integer.parseInt(tipo);
+//        if(hora<12){
+//            momento="Mañana";
+//        }else if(hora>12 && hora<20){             //MOMENTO DEL DIA QUE CANTA <---------- ESTO ES NUESTRO
+//            momento= "Tarde";
+//        }else{
+//            momento="Noche";
+//        }    
+//        return momento;
+         String horaD;
+         //Guardar el dia y la hora actual
+         Calendar diaYHora = Calendar.getInstance();
+         String hora = Integer.toString(diaYHora.get(Calendar.HOUR_OF_DAY)) + ":"+Integer.toString(diaYHora.get(Calendar.MINUTE)); //<----------  ESTO ES LO DE LA PAZ
+         
+         //Segun la hora del dia que sea, decir si es de mañana o de tarde
+         if(diaYHora.get(Calendar.HOUR_OF_DAY)<12){
+             horaD = "Mañana";
+         }else{
+             horaD = "Tarde";
+         }
+         
+        return horaD;
     }
 
     public String getTipo() {

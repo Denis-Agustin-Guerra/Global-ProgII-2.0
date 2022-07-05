@@ -17,7 +17,7 @@ public class Instrumento implements Serializable {
         this.tipo = tipo;
     }
     
-    public boolean ejecuta(){ //MIRAR LUEGO <-------------------
+    public boolean ejecuta(){ //<-------------------MIRAR LUEGO 
         if("guitarra".equals(nombre)){
             return true;
         }else if("piano".equals(nombre)){

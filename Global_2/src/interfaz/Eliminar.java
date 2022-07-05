@@ -1,16 +1,10 @@
-
 package interfaz;
-
 import javax.swing.JOptionPane;
-
 public class Eliminar extends javax.swing.JFrame {
-
-
     public Eliminar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,7 +56,6 @@ public class Eliminar extends javax.swing.JFrame {
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
-        
         System.exit(0);
     }//GEN-LAST:event_btn_salirActionPerformed
 
@@ -84,7 +77,7 @@ public class Eliminar extends javax.swing.JFrame {
         if (n == JOptionPane.YES_OPTION) {
             String value = (String) lista_nombre.getSelectedItem();
             Menu host = new Menu();
-            for (int j = 0; j < Menu.cantores.size(); j++) {                                //FUNCIONES PARA ELIMINAR DATOS
+            for (int j = 0; j < Menu.cantores.size(); j++) {                                //FUNCIONES PARA ELIMINAR DATOS VER SI FUNCIONA
                 if (value.equals(Menu.cantores.get(host.POSICION_LISTA(value)).nombre)) {
                     Menu.cantores.remove(host.POSICION_LISTA(value));
                     lista_nombre.removeItem(value);
@@ -104,7 +97,6 @@ public class Eliminar extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_salir;

@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import mvc.SerCantor;
 
-/**
- *
- * @author Asus
- */
 public class Menu extends javax.swing.JFrame {
 
     public static ArrayList<SerCantor> cantores = new ArrayList();
@@ -99,7 +93,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+        JOptionPane.showMessageDialog(null, "Se a cerrado correctamente");
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
